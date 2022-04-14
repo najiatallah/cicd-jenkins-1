@@ -95,7 +95,7 @@
           </OutArgument>
         </Assign.To>
         <Assign.Value>
-          <InArgument x:TypeArguments="x:String">Naji2</InArgument>
+          <InArgument x:TypeArguments="x:String">Najix</InArgument>
         </Assign.Value>
       </Assign>
     </Sequence>
