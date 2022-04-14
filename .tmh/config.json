@@ -1,3 +1,9 @@
 {
-  "issueKeyTestcaseValues": {}
+  "issueKeyTestcaseValues": {},
+  "testManagerBasePath": "https://cloud.uipath.com/ceranic/UiPathDefault/testmanager_",
+  "defaultProject": {
+    "id": "1b872358-6308-0000-7dfe-0b43d28c82e0",
+    "name": "Project1",
+    "key": "PRJ"
+  }
 }
