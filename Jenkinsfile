@@ -75,7 +75,7 @@ pipeline {
 						  folderName: "${UIPATH_ORCH_FOLDER_NAME_DEV}",
 						  timeout: 10000,
 						  traceLevel: 'None',
-						  testResultsOutputPath: "Output\\${JOB_NAME}\\Tests\\${BUILD_NUMBER}\\",
+						  testResultsOutputPath: "Output\\${JOB_NAME}\\Tests\\${BUILD_NUMBER}\\result.xml",
 						  credentials: Token(accountName: "${UIPATH_ORCH_LOGICAL_NAME}", credentialsId: 'CeranicApiUserKey'),
 						  parametersFilePath: ''
 					)
