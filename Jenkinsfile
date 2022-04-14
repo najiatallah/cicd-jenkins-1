@@ -35,7 +35,7 @@ pipeline {
 	            steps {
 	                echo "Building package with ${WORKSPACE}"
 	                UiPathPack (
-	                      outputPath: "Output\\Tests\\${env.BUILD_NUMBER}",
+	                      outputPath: "Output\\${JOB_NAME}\\Tests\\${BUILD_NUMBER}",
 						  outputType: 'Tests',
 	                      projectJsonPath: "project.json",
 	                      version: [$class: 'ManualVersionEntry', version: "${MAJOR}.${MINOR}.${env.BUILD_NUMBER}"],
@@ -51,7 +51,7 @@ pipeline {
 	            steps {
 	                echo "Deploying ${BRANCH_NAME} to orchestrator"
 	                UiPathDeploy (
-						packagePath: "Output\\Tests\\${env.BUILD_NUMBER}",
+						packagePath: "Output\\${JOB_NAME}\\Tests\\${BUILD_NUMBER}",
 						orchestratorAddress: "${UIPATH_ORCH_URL}",
 						orchestratorTenant: "${UIPATH_ORCH_TENANT_NAME}",
 						folderName: "${UIPATH_ORCH_FOLDER_NAME_DEV}",
@@ -75,7 +75,7 @@ pipeline {
 						  folderName: "${UIPATH_ORCH_FOLDER_NAME_DEV}",
 						  timeout: 10000,
 						  traceLevel: 'None',
-						  testResultsOutputPath: "result.xml",
+						  testResultsOutputPath: "Output\\${JOB_NAME}\\Tests\\${BUILD_NUMBER}\\",
 						  credentials: Token(accountName: "${UIPATH_ORCH_LOGICAL_NAME}", credentialsId: 'CeranicApiUserKey'),
 						  parametersFilePath: ''
 					)
@@ -93,7 +93,7 @@ pipeline {
 				steps {
 					echo "Building package with ${WORKSPACE}"
 					UiPathPack (
-						  outputPath: "Output\\${env.BUILD_NUMBER}",
+						  outputPath: "Output\\${JOB_NAME}\\Builds\\${BUILD_NUMBER}",
 						  projectJsonPath: "project.json",
 						  version: [$class: 'ManualVersionEntry', version: "${MAJOR}.${MINOR}.${env.BUILD_NUMBER}"],
 						  useOrchestrator: false,
@@ -113,7 +113,7 @@ pipeline {
 				steps {
 	                echo 'Deploying process to orchestrator...'
 	                UiPathDeploy (
-						packagePath: "Output\\${env.BUILD_NUMBER}",
+						packagePath: "Output\\${JOB_NAME}\\Builds\\${env.BUILD_NUMBER}",
 						orchestratorAddress: "${UIPATH_ORCH_URL}",
 						orchestratorTenant: "${UIPATH_ORCH_TENANT_NAME}",
 						folderName: "${UIPATH_ORCH_FOLDER_NAME_DEV}",
