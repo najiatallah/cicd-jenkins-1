@@ -108,7 +108,7 @@ pipeline {
 	        stage('Deploy Process') {
 				when {
 					expression {
-						currentBuild.result == null || currentBuild.result == 'SUCCESS' 
+						currentBuild.result == null || currentBuild.result == 'SUCCESS' || currentBuild.result != 'UNSTABLE'
 						}
 				}
 				steps {
