@@ -47,21 +47,21 @@ pipeline {
 
 	
 			// Deploy Stages
-	        stage('Deploy Tests') {
-	            steps {
-	                echo "Deploying ${BRANCH_NAME} to orchestrator"
-	                UiPathDeploy (
-						packagePath: "Output\\${JOB_NAME}\\Tests\\${BUILD_NUMBER}",
-						orchestratorAddress: "${UIPATH_ORCH_URL}",
-						orchestratorTenant: "${UIPATH_ORCH_TENANT_NAME}",
-						folderName: "${UIPATH_ORCH_FOLDER_NAME_DEV}",
-						environments: '',
-						credentials: Token(accountName: "${UIPATH_ORCH_LOGICAL_NAME}", credentialsId: 'CeranicApiUserKey'),
-						traceLevel: 'None',
-						entryPointPaths: 'Main.xaml'
-					)
-	            }
-			}
+	        //stage('Deploy Tests') {
+	        //    steps {
+	        //        echo "Deploying ${BRANCH_NAME} to orchestrator"
+	        //        UiPathDeploy (
+			//			packagePath: "Output\\${JOB_NAME}\\Tests\\${BUILD_NUMBER}",
+			//			orchestratorAddress: "${UIPATH_ORCH_URL}",
+			//			orchestratorTenant: "${UIPATH_ORCH_TENANT_NAME}",
+			//			folderName: "${UIPATH_ORCH_FOLDER_NAME_DEV}",
+			//			environments: '',
+			//			credentials: Token(accountName: "${UIPATH_ORCH_LOGICAL_NAME}", credentialsId: 'CeranicApiUserKey'),
+			//			traceLevel: 'None',
+			//			entryPointPaths: 'Main.xaml'
+			//		)
+	         //   }
+			//}
 
 
 			// Test Stages
@@ -88,7 +88,7 @@ pipeline {
 	        stage('Build Process') {
 				when {
 					expression {
-						currentBuild.result == null || currentBuild.result == 'SUCCESS'
+						currentBuild.result == null || currentBuild.result == 'SUCCESS' || currentBuild.result != 'UNSTABLE'
 						}
 				}
 				steps {
